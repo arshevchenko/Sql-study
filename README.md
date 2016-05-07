@@ -6,6 +6,7 @@ I've added three first tasks.
 
 ### Task 1
 Task 1 contains database construction made on dbdesigner.net
+![alt tag](https://github.com/shev2dev/Sql-study/blob/master/Task_1/UPD1.png)
 
 ### Task 2
 Task 2 contains database creating querys.

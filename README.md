@@ -12,7 +12,7 @@ Task 1 contains database construction made on dbdesigner.net
 ![alt tag](https://github.com/shev2dev/Sql-study/blob/master/Task_1/UPD1.png)
 
 ### Task 2
-Task 2 contains database creating querys.
+Task 2 contains database creation querys.
 
 ### Task 3
 Contains simple selection of fields and information catching.

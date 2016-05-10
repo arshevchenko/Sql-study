@@ -29,9 +29,9 @@ INSERT INTO cat_airports (name, country) VALUES ('Нагасаки', 2);
 INSERT INTO cat_airports (name, country) VALUES ('Дедхорс', 3);
 
 --Data for cat_flight 
-INSERT INTO cat_flight (date_end, start_time, end_time, company, airport) VALUES ('2016-07-01', '09:38:10', '19:20:20', 0, 3);
-INSERT INTO cat_flight (date_end, start_time, end_time, company, airport) VALUES ('2016-07-01', '08:10:11', '13:00:20', 1, 0);
-INSERT INTO cat_flight (date_end, start_time, end_time, company, airport) VALUES ('2016-08-24', '10:22:10', '14:11:00', 2, 2);
+INSERT INTO cat_flight (start_time, end_time, company, airport) VALUES ('09:38:10', '19:20:20', 0, 3);
+INSERT INTO cat_flight (start_time, end_time, company, airport) VALUES ('08:10:11', '13:00:20', 1, 0);
+INSERT INTO cat_flight (start_time, end_time, company, airport) VALUES ('10:22:10', '14:11:00', 2, 2);
 
 --Data for doc_flight_report
 INSERT INTO doc_flight_report (id_flight, id_plane, rl_time_begin, rl_time_end, flight_status) VALUES (0, 0, '09:40:20','19:32:10', 3);

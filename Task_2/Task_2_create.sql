@@ -80,3 +80,7 @@ INSERT INTO add_class (class_name, class_priority) VALUES ('TEST', 3);
 
 
 DELETE  FROM add_class WHERE class_priority = 3;
+
+ALTER TABLE doc_ticket ADD sold BIT DEFAULT 0;
+ALTER TABLE doc_ticket_report DROP COLUMN period;
+ALTER TABLE doc_ticket_report ADD period INT;

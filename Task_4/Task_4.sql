@@ -102,7 +102,8 @@ BEGIN
 		BEGIN 
 			INSERT INTO doc_shedule (id_flight_report, gate_num) VALUES (
 				@flight_status, 
-				(SELECT TOP 1 id FROM add_gate_status WHERE gate_status = 0));
+				(SELECT TOP 1 id FROM add_gate_status WHERE gate_status = 0)
+			);
 		END;
 	END;
 GO

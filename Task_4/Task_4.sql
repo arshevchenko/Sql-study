@@ -78,6 +78,8 @@ AS
 	END;
 GO
 
+--Trigger on UPDATE operation
+--Adds new record to shedule, if flight status updated to id 0
 CREATE TRIGGER add_doc_schedule
 ON doc_flight_report
 AFTER UPDATE
@@ -98,6 +100,9 @@ BEGIN
 
 		IF (UPDATE(status) AND @status = @status_now)
 		BEGIN 
-			INSERT INTO doc_shedule (id_flight_report, gate_num) VALUES (@flight_status)
+			INSERT INTO doc_shedule (id_flight_report, gate_num) VALUES (
+				@flight_status, 
+				(SELECT TOP 1 id FROM add_gate_status WHERE gate_status = 0));
+		END;
 	END;
 GO

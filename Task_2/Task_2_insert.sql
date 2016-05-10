@@ -53,3 +53,14 @@ INSERT INTO doc_ticket (place, class, price, flight_report) VALUES (3, 1, 7999, 
 INSERT INTO doc_ticket (place, class, price, flight_report) VALUES (4, 1, 7999, 0);
 INSERT INTO doc_ticket (place, class, price, flight_report) VALUES (5, 0, 3999, 0);
 INSERT INTO doc_ticket (place, class, price, flight_report) VALUES (6, 0, 3999, 0);
+
+--Data for add_gate_status
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);
+INSERT INTO add_gate_status (gate_status) VALUES (0);

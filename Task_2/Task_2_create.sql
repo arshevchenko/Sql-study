@@ -72,6 +72,11 @@ CREATE TABLE doc_shedule(
 	gate_num INT
 );
 
+CREATE TABLE add_gate_status(
+	id INT IDENTITY(0, 1) PRIMARY KEY,
+	gate_status BIT NOT NULL
+);
+
 
 INSERT INTO add_class (class_name, class_priority) VALUES ('Эконом', 0);
 INSERT INTO add_class (class_name, class_priority) VALUES ('Бизнес', 1);
@@ -84,3 +89,5 @@ DELETE  FROM add_class WHERE class_priority = 3;
 ALTER TABLE doc_ticket ADD sold BIT DEFAULT 0;
 ALTER TABLE doc_ticket_report DROP COLUMN period;
 ALTER TABLE doc_ticket_report ADD period INT;
+ALTER TABLE doc_shedule DROP COLUMN gate_num;
+ALTER TABLE doc_shedule ADD gate_num INT FOREIGN KEY REFERENCES add_gate_status(id);

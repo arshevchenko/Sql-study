@@ -77,6 +77,12 @@ CREATE TABLE add_gate_status(
 	gate_status BIT NOT NULL
 );
 
+CREATE TABLE trigger_permissions(
+	id INT IDENTITY(0, 1) PRIMARY KEY,
+	op_name VARCHAR(255),
+	have_permission BIT DEFAULT(0)
+);
+
 
 INSERT INTO add_class (class_name, class_priority) VALUES ('Эконом', 0);
 INSERT INTO add_class (class_name, class_priority) VALUES ('Бизнес', 1);

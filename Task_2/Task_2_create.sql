@@ -1,99 +1,87 @@
 CREATE TABLE add_class(
-    id INT IDENTITY(0, 1) PRIMARY KEY,
-	class_name VARCHAR(255) NOT NULL ,
-	class_priority INT NOT NULL
+    id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	class_name VARCHAR(255) UNIQUE NOT NULL 
 );
+GO
 
 CREATE TABLE add_country(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	country VARCHAR(255) NOT NULL
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	country VARCHAR(255) UNIQUE NOT NULL
 );
+GO
 
 CREATE TABLE add_status(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	status_type VARCHAR(255) NOT NULL
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	status_type VARCHAR(255) UNIQUE NOT NULL
 );
-
-CREATE TABLE cat_companies(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	name VARCHAR(255) NOT NULL
-);
+GO
 
 CREATE TABLE cat_airports(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
 	name VARCHAR(255) NOT NULL,
 	country INT FOREIGN KEY REFERENCES add_country(id)
 );
+GO
 
 CREATE TABLE cat_planes(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
 	plane VARCHAR(255) NOT NULL,
 	place_count INT 
 );
+GO
 
 CREATE TABLE cat_flight(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	date_end DATE,
-	start_time TIME,
-	end_time TIME,
-	company INT FOREIGN KEY REFERENCES cat_companies(id),
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	start_time DATETIME NOT NULL,
+	end_time DATETIME NOT NULL,
 	airport INT FOREIGN KEY REFERENCES cat_airports(id)
 );
+GO
 
 CREATE TABLE doc_ticket(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	place INT,
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	place INT NOT NULL,
 	class INT FOREIGN KEY REFERENCES add_class(id),
-	price FLOAT 
+	price FLOAT  NOT NULL,
+	sold BIT DEFAULT 0 NOT NULL
 );
 
-CREATE TABLE doc_flight_report(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
+CREATE TABLE doc_flight_real(
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
 	id_flight INT FOREIGN KEY REFERENCES cat_flight(id),
 	id_plane INT FOREIGN KEY REFERENCES cat_planes(id),
-	rl_time_begin TIME,
-	rl_time_end TIME,
+	real_time_start DATETIME NOT NULL,
+	real_time_end DATETIME NOT NULL,
 	flight_status INT FOREIGN KEY REFERENCES add_status(id) 
 );
 
-ALTER TABLE doc_ticket ADD flight_report INT FOREIGN KEY  REFERENCES doc_flight_report(id);
-
+ALTER TABLE doc_ticket ADD flight_report INT FOREIGN KEY  REFERENCES doc_flight_real(id);
+GO
 
 CREATE TABLE doc_ticket_report(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
 	id_ticket INT FOREIGN KEY REFERENCES doc_ticket(id),
-	sell_time DATETIME,
-	period DATE
+	sell_time DATETIME NOT NULL,
+	period INT NOT NULL
 );
-
-CREATE TABLE doc_shedule(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	id_flight_report INT FOREIGN KEY REFERENCES doc_flight_report(id),
-	gate_num INT
-);
+GO
 
 CREATE TABLE add_gate_status(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
 	gate_status BIT NOT NULL
 );
+GO
+
+CREATE TABLE doc_shedule(
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	id_flight_report INT FOREIGN KEY REFERENCES doc_flight_real(id),
+	gate_num INT FOREIGN KEY REFERENCES add_gate_status(id)
+);
+GO
 
 CREATE TABLE trigger_permissions(
-	id INT IDENTITY(0, 1) PRIMARY KEY,
-	op_name VARCHAR(255),
-	have_permission BIT DEFAULT(0)
+	id INT IDENTITY(0, 1) PRIMARY KEY NONCLUSTERED,
+	op_name VARCHAR(255) NOT NULL,
+	have_permission BIT DEFAULT(0) NOT NULL
 );
-
-
-INSERT INTO add_class (class_name, class_priority) VALUES ('Эконом', 0);
-INSERT INTO add_class (class_name, class_priority) VALUES ('Бизнес', 1);
-INSERT INTO add_class (class_name, class_priority) VALUES ('Первый', 2);
-INSERT INTO add_class (class_name, class_priority) VALUES ('TEST', 3);
-
-
-DELETE  FROM add_class WHERE class_priority = 3;
-
-ALTER TABLE doc_ticket ADD sold BIT DEFAULT 0;
-ALTER TABLE doc_ticket_report DROP COLUMN period;
-ALTER TABLE doc_ticket_report ADD period INT;
-ALTER TABLE doc_shedule DROP COLUMN gate_num;
-ALTER TABLE doc_shedule ADD gate_num INT FOREIGN KEY REFERENCES add_gate_status(id);
+GO

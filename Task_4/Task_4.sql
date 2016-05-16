@@ -112,7 +112,7 @@ BEGIN
 	ON fr.id = ins.id
 	WHERE fr.id = ins.id;
 
-		IF (UPDATE(status) AND @status = @status_now)
+		IF (UPDATE(flight_status) AND @status = @status_now)
 		BEGIN 
 			INSERT INTO doc_shedule (id_flight_report, gate_num) VALUES (
 				@flight_status, 

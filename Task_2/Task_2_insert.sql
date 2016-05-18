@@ -88,3 +88,6 @@ INSERT INTO add_gate_status (gate_status) VALUES (0);
 INSERT INTO add_gate_status (gate_status) VALUES (0);
 INSERT INTO add_gate_status (gate_status) VALUES (0);
 INSERT INTO add_gate_status (gate_status) VALUES (0);
+
+-- Variables for trigger permissions
+INSERT INTO trigger_permissions (op_name, have_permission) VALUES ('RTicketInsert', 0);

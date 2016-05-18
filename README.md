@@ -20,12 +20,12 @@ Contains simple selection of fields and information catching.
 ### Task 4 (Triggers)
 Contains 5 triggers:
 1. 3 on INSTEAD OF:
-    * banOnDirectlyAddingIntoTicketReport - INSERT
-    * RemoveOnlyIfTimeIsOver - **DELETE**
-    * banOnClassUpdate - **UPDATE**
+  * banOnDirectlyAddingIntoTicketReport - INSERT
+  * RemoveOnlyIfTimeIsOver - **DELETE**
+  * banOnClassUpdate - **UPDATE**
 2. 2 on AFTER:
-    * AddNewRecordToTicketReport - UPDATE
-    * add_doc_schedule - UPDATE
+  * AddNewRecordToTicketReport - UPDATE
+  * add_doc_schedule - UPDATE
 
 
 
